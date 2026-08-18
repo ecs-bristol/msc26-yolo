@@ -1,0 +1,12 @@
+# Jetson-side Python packages used by the project.
+# PyTorch, torchvision, CUDA, TensorRT, and OpenCV should match the installed JetPack environment.
+# Do not replace the Jetson CUDA-enabled packages with generic CPU-only wheels.
+
+ultralytics
+numpy
+pandas
+matplotlib
+flask
+psutil
+openpyxl
+PyYAML

@@ -1,0 +1,12 @@
+GitHub upload checklist
+=======================
+
+Before committing:
+1. Keep the existing LICENSE file already present in the remote repository.
+2. Copy the contents of this package into the locally cloned `msc26-yolo` repository.
+3. Do not copy the full Kaggle dataset, raw videos, virtual environments, or cache folders.
+4. Do not add Kaggle API tokens or credentials.
+5. Model binaries are excluded by `.gitignore` by default.
+6. Review the GitHub Desktop Changes list before committing.
+7. Suggested commit message: Add training, evaluation, optimization and Jetson deployment code
+8. Push the commit to the remote repository.

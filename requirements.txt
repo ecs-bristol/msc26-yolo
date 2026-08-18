@@ -1,0 +1,14 @@
+# Common Python dependencies for training, analysis, PC benchmarking, and the web UI.
+# Install a CUDA-compatible PyTorch build separately when GPU acceleration is required.
+
+ultralytics
+kagglehub
+PyYAML
+numpy
+pandas
+matplotlib
+opencv-python
+flask
+psutil
+openpyxl
+jupyter

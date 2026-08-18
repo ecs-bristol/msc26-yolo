@@ -1,0 +1,12 @@
+# Representative dataset configuration for TensorRT INT8 calibration.
+# Adjust `path` to the local INT8 calibration directory on the Jetson device.
+path: ../int8_calib
+
+train: images/val
+val: images/val
+
+names:
+  0: smoke
+  1: fire
+
+nc: 2

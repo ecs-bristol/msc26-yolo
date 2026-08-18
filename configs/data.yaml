@@ -1,0 +1,13 @@
+# Fire and smoke detection dataset configuration.
+# Adjust `path` to the local dataset root after downloading the Kaggle dataset.
+path: ../dataset
+
+train: data/train/images
+val: data/val/images
+test: data/test/images
+
+names:
+  0: smoke
+  1: fire
+
+nc: 2

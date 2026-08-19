@@ -1,0 +1,15 @@
+Model: YOLO11s P20 Pruned + TensorRT FP16
+Platform: Jetson Orin Nano
+Input size: 640
+Engine: yolo11s_p20_best_fp16.engine
+Engine size: 17.2 MB
+
+Preprocess: 3.9 ms/image
+Inference: 20.2 ms/image
+Postprocess: 4.8 ms/image
+Inference-only FPS: 49.5 FPS
+Total processing latency: 28.9 ms/image
+Approx. processing FPS: 34.6 FPS
+
+TensorRT engine generation time: 622.048 s
+TensorRT export total time: 644.6 s

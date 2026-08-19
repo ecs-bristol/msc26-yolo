@@ -1,52 +1,75 @@
 # Dataset
 
-## Source
+## Overview
 
-The fire and smoke detection dataset used in this project was obtained from Kaggle.
+The project uses a fire and smoke detection dataset obtained from Kaggle.
 
-Dataset identifier:
+The dataset is used to train and evaluate four YOLO detector variants:
 
-```text
-sayedgamal99/smoke-fire-detection-yolo
-```
+- YOLOv8-S
+- YOLOv9-S
+- YOLO11-S
+- YOLO26-S
 
-## Dataset Organization
+The detection task focuses on the fire and smoke classes.
 
-The downloaded dataset provides data used for training, validation, and testing. The exact directory structure is defined by the dataset YAML file.
+## Dataset Structure
 
-The repository keeps only the relevant YAML configuration files under `configs/`; the full image and label dataset is not committed to GitHub.
+The dataset is organized into separate training, validation, and test subsets.
 
-## YOLO Labels
+The YOLO dataset configuration is provided in:
 
-The training notebooks use the dataset's YOLO-format annotations. Dataset class names and class order should always be read from the original YAML configuration rather than redefined from memory.
+`configs/data.yaml`
 
-## Repository Files
+The complete image dataset is not stored in this repository because of its size. The configuration file is retained so that the dataset structure used by the training and validation scripts remains documented.
 
-```text
-configs/data.yaml
-```
+## Use in Model Training
 
-Original dataset configuration used for training and validation.
+The same dataset was used for the four-model comparison.
 
-```text
-configs/int8_calibration.yaml
-```
+The main nominal training configuration was:
 
-Configuration used for representative INT8 calibration data on the Jetson optimization workflow.
+| Parameter | Value |
+|---|---:|
+| Image size | 640 |
+| Epochs | 100 |
+| Random seed | 42 |
+| Nominal batch size | 16 |
 
-## Data Integrity Checks
+YOLOv9-S was trained with a batch size of 8 in the completed experiment. The other three models used a batch size of 16.
 
-Before formal training, the workflow checks:
+This difference is retained in the repository so that the recorded experiment matches the model that was actually trained and evaluated.
 
-- Dataset directory structure
-- YAML paths
-- Image/label pairing
-- YOLO-format bounding-box coordinates
-- Class identifiers
-- Example annotated images
+## Validation and Test Data
 
-Negative images without fire or smoke may have empty/no object annotations depending on the dataset design.
+The validation subset is used to calculate standard object-detection metrics including:
 
-## Dataset Licensing
+- Precision
+- Recall
+- mAP@50
+- mAP@50-95
 
-This repository does not redistribute the full Kaggle dataset. Users should consult the original Kaggle dataset page for the applicable dataset license and usage conditions.
+The test and benchmark material is used separately for runtime and scenario-based evaluation on PC and Jetson platforms.
+
+## INT8 Calibration Data
+
+TensorRT INT8 conversion requires representative calibration data.
+
+A representative subset of the fire and smoke dataset was prepared for INT8 calibration. Its dataset configuration is provided in:
+
+`configs/int8_calibration.yaml`
+
+This calibration configuration is separate from the standard training configuration because its purpose is TensorRT INT8 model calibration rather than model training.
+
+## Repository Scope
+
+The repository includes:
+
+- Dataset configuration files
+- Training notebooks
+- Evaluation scripts
+- Optimization scripts
+- Selected trained and optimized models
+- Selected experimental results
+
+The complete Kaggle image dataset and raw benchmark videos are not included.

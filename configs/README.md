@@ -1,21 +1,23 @@
 # Configuration Files
 
-This directory stores lightweight dataset and deployment configuration files.
+This directory contains configuration files used by the training, validation, and optimization workflows.
 
-## Expected Files
+## Files
 
 ### `data.yaml`
 
-Original YOLO dataset configuration used for training and validation.
+Dataset configuration used for standard YOLO training and validation.
 
-The file should define the dataset paths and class names required by Ultralytics YOLO. Class order should follow the original dataset definition and should not be changed manually unless the dataset itself is changed.
+It defines the training, validation, and test dataset paths together with the fire and smoke class information.
 
 ### `int8_calibration.yaml`
 
-Dataset configuration used during TensorRT INT8 calibration/export.
+Dataset configuration used for TensorRT INT8 calibration.
 
-This configuration should point to the representative calibration image set prepared for INT8 quantization. Calibration data should reflect the expected fire, smoke, mixed, and negative deployment scenes as closely as possible.
+A representative subset of the fire and smoke dataset is used during INT8 calibration to support generation of the optimized TensorRT model.
 
-## Dataset Storage
+## Dataset Documentation
 
-The complete dataset is intentionally not stored in this repository. Only YAML configuration files are version controlled.
+Additional information about the dataset source, dataset structure, and experimental usage is provided in:
+
+`docs/DATASET.md`

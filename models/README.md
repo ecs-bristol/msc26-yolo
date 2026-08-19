@@ -1,37 +1,52 @@
 # Model Files
 
-Large model binaries are not tracked in normal Git history by default.
+This directory contains the trained and optimized model files used in the fire and smoke detection experiments.
 
-## Trained Detector Weights
+## Baseline Detection Models
 
-Expected trained detector files include:
+The following four YOLO models were trained on the same fire and smoke detection dataset and used in the initial model comparison.
 
-```text
-yolov8s_best.pt
-yolov9s_best.pt
-yolo11s_best.pt
-yolo26s_best.pt
-```
+| Model file | Description |
+|---|---|
+| `yolov8s_best.pt` | Trained YOLOv8-S fire and smoke detector |
+| `yolov9s_best.pt` | Trained YOLOv9-S fire and smoke detector |
+| `yolo11s_best.pt` | Trained YOLO11-S fire and smoke detector |
+| `yolo26s_best.pt` | Trained YOLO26-S fire and smoke detector |
 
-## Optimized YOLO11-S Variants
+Following the comparative evaluation, YOLO11-S was selected for further edge optimization and Jetson deployment.
 
-Typical optimized outputs include:
+## Pruned YOLO11-S Models
 
-```text
-yolo11s_best_fp16.engine
-yolo11s_best_int8.engine
-yolo11s_p20_best.pt
-yolo11s_p20_best_fp16.engine
-```
+| Model file | Description |
+|---|---|
+| `yolo11s_p20_best.pt` | P20-pruned YOLO11-S PyTorch model |
+| `yolo11s_p20_best.onnx` | ONNX export of the P20-pruned YOLO11-S model |
+| `yolo11s_p20_best_fp16.engine` | TensorRT FP16 engine generated from the P20-pruned model |
+| `yolo11s_p20_best_int8.engine` | TensorRT INT8 engine generated from the P20-pruned model |
 
-The exact filenames may differ between experiment runs. Update this file if the final model naming scheme changes.
+The TensorRT engines were generated for the Jetson deployment environment used in this project. Compatibility may depend on the JetPack, CUDA, TensorRT, and GPU environment, and regeneration may be required on a different platform.
 
-## Scene Classifier
+## Scene Classification Models
 
-The final application can load a MobileNetV3-based scene classifier from the model directory. Depending on the export path, the scene classifier may be stored as a PyTorch checkpoint, TorchScript model, or ONNX model.
+MobileNetV3-Small was used as an auxiliary scene-level classifier in the final fire and smoke alarm system.
 
-## Why Models Are Excluded from Normal Git
+| Model file | Description |
+|---|---|
+| `mobilenetv3_scene.pt` | PyTorch MobileNetV3 scene classifier |
+| `mobilenetv3_scene.onnx` | ONNX export of the MobileNetV3 scene classifier |
 
-Model files can be large and TensorRT `.engine` files are platform dependent. TensorRT engines are tied to the target runtime environment and should preferably be generated on the deployment Jetson.
+The scene classifier provides additional fire/smoke scene-level information and can be enabled or disabled in the final Jetson deployment system.
 
-If model binaries must be shared through this repository, use Git LFS rather than committing them through normal Git history.
+## Model Usage
+
+The four baseline YOLO models are used by the evaluation scripts under:
+
+`evaluation/`
+
+YOLO11-S optimization and validation scripts are located under:
+
+`optimization/`
+
+The final YOLO and MobileNetV3 integrated deployment system is located under:
+
+`deployment/`

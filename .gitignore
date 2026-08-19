@@ -45,6 +45,11 @@ results_alarm/
 *.torchscript
 *.ts
 
+# Keep selected project models in the models directory
+!models/*.pt
+!models/*.onnx
+!models/*.engine
+
 # Videos
 *.mp4
 *.avi

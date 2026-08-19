@@ -65,6 +65,9 @@ msc26-yolo/
 │   └── README.md
 │
 ├── deployment/
+│   └── README.md
+│
+├── application/
 │   ├── jetson_fire_alarm.py
 │   └── README.md
 │
@@ -374,13 +377,23 @@ Scene assistance can be enabled or disabled in the final system.
 The scene classifier can also be executed at configurable frame intervals to reduce additional computational cost.
 
 ---
+# Jetson Edge Deployment
 
-# Final Jetson Deployment System
+The selected detection models were deployed on an NVIDIA Jetson edge platform.
+
+The deployment procedure included microSD system preparation, Jetson system configuration, Python and inference environment setup, camera configuration, model transfer, TensorRT conversion, and runtime verification.
+
+Detailed hardware and software deployment information is provided under:
+
+`deployment/README.md`
+
+---
+# Final Fire and Smoke Monitoring Application
 
 The final real-time fire and smoke alarm application is located at:
 
 ```text
-deployment/jetson_fire_alarm.py
+application/jetson_fire_alarm.py
 ```
 
 The system combines:
